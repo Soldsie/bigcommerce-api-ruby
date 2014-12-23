@@ -22,7 +22,7 @@ module Bigcommerce
       @configuration[:api_key] = api_key
     end
 
-    def verify_peer=(verify)
+    def verify_ssl=(verify)
       @configuration[:verify_ssl] = verify
     end
 
@@ -62,6 +62,7 @@ module Bigcommerce
       resource_options = {
         :user => @configuration[:username],
         :password => @configuration[:api_key],
+        :verify_ssl => @configuration[:verify_ssl],
         :headers => headers
       }
       restclient = RestClient::Resource.new "#{@configuration[:store_url]}/api/v2#{path}.json", resource_options
